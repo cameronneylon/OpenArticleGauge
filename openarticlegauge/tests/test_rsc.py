@@ -43,6 +43,28 @@ RESOURCE_AND_RESULT = {
                 "date": -1 # date is not null (but we don't know the exact value)
             }
        },
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "rsc.10.1039.C3AY40543E.html") : 
+        {
+            "id" : None,            # there should be no id field
+            "version": "3.0",          # version should be the empty string
+            "type": "cc-nc",
+            "jurisdiction": "",     # jurisdiction should be the empty string
+            "open_access": False,
+            "BY": True,
+            "NC": True,
+            "ND": False,
+            "SA": False,
+            "provenance": {
+                "handler": MyPlugin._short_name, # name of plugin which processed this record
+                "handler_version": MyPlugin.__version__, # version of plugin which processed this record
+                "category": "page_scrape", # category is page_scrape
+                "description": 'License decided by scraping the resource at http://pubs.rsc.org/en/content/articlelanding/2013/ay/c3ay40543e and looking for the following license statement: "This article is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/" target="_blank" title="This link will open in a new browser window">Creative Commons Attribution-NonCommercial 3.0 Unported Licence.".', # description is a long string
+                "agent": config.agent, # agent is from configuration
+                "source": "http://pubs.rsc.org/en/content/articlelanding/2013/ay/c3ay40543e", # source is the url where we look this record up
+                "date": -1 # date is not null (but we don't know the exact value)
+            }
+        },   
+       
     os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "rsc.10.1039.C3GC40967H.html") : 
         {
             "id" : None,            # there should be no id field

@@ -57,6 +57,11 @@ class RSCPlugin(plugin.Plugin):
                  'version' : '3.0',
                  'url' : 'http://creativecommons.org/licenses/by/3.0/'}
             },
+            {'This article is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/" target="_blank" title="This link will open in a new browser window">Creative Commons Attribution-NonCommercial 3.0 Unported Licence.':
+                {'type' : 'cc-nc',
+                 'version' : '3.0',
+                 'url' : 'http://creativecommons.org/licenses/by-nc/3.0/'}
+            },
             {'<img  class="list_icon_openaccess" src="http://sod-a.rsc-cdn.org/pubs.rsc.org/content/NewImages/open_access_blue.png" alt="Open Access" />' :
                 {'type' : 'publisher-asserted-accessible'
                 }
