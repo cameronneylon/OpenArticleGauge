@@ -2,21 +2,13 @@ from unittest import TestCase
 import requests, os
 
 from openarticlegauge import config
-from openarticlegauge.plugins.frontiers import FrontiersPlugin as MyPlugin
+from openarticlegauge.plugins.rsc import RSCPlugin as MyPlugin
 
-SUPPORTED_URLS = ["www.frontiersin.org/Cancer_Molecular_Targets_and_Therapeutics/10.3389/fonc.2013.00146/abstract", 
-                  "www.frontiersin.org/fakjsskjdaf"]
+SUPPORTED_URLS = ["pubs.rsc.org/en/content/articlelanding/2013/gc/c3gc40967h", 
+                  "pubs.rsc.org/fakjsskjdaf"]
 
 UNSUPPORTED_URLS = ["http://www.biomedcentral.com/", "askjdfsakjdhfsa"]
 
-# a list of file paths and the expected licence object from parsing that file path
-#
-# in the examples here we construct file paths that are relative to this test class
-# in the "resources" sub-directory.  If you put your test documents in there, then
-# all you need to change is the filename, which is the final argument passed os.path.join
-#
-# the example file used resources/pbio1001406.html is a Frontiers web page
-#
 # The licence object is as defined in the OAG API documentation.  Any fields omitted will
 # not be checked.  Any fields included will be checked for an exact match against the actual
 # record received when the plugin is run.  See below for the full spec of the licence
@@ -30,7 +22,7 @@ UNSUPPORTED_URLS = ["http://www.biomedcentral.com/", "askjdfsakjdhfsa"]
 # - if a key's value is -1, the resulting object MUST have the key
 #
 RESOURCE_AND_RESULT = {
-    os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "fonc.2013.00146.html") : 
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "rsc.10.1039.C3EE00043E.html") : 
         {
             "id" : None,            # there should be no id field
             "version": "3.0",          # version should be the empty string
@@ -45,12 +37,34 @@ RESOURCE_AND_RESULT = {
                 "handler": MyPlugin._short_name, # name of plugin which processed this record
                 "handler_version": MyPlugin.__version__, # version of plugin which processed this record
                 "category": "page_scrape", # category is page_scrape
-                "description": 'License decided by scraping the resource at http://www.frontiersin.org/Cancer_Molecular_Targets_and_Therapeutics/10.3389/fonc.2013.00146/abstract and looking for the following license statement: "This is an open-access article distributed under the terms of the <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons Attribution License</a>, which permits use, distribution and reproduction in other forums, provided the original authors and source are credited".', # description is a long string
+                "description": 'License decided by scraping the resource at http://pubs.rsc.org/en/Content/ArticleLanding/2013/EE/c3ee00043e and looking for the following license statement: "This article is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/" target="_blank" title="This link will open in a new browser window">Creative Commons Attribution 3.0 Unported Licence.".', # description is a long string
                 "agent": config.agent, # agent is from configuration
-                "source": "http://www.frontiersin.org/Cancer_Molecular_Targets_and_Therapeutics/10.3389/fonc.2013.00146/abstract", # source is the url where we look this record up
+                "source": "http://pubs.rsc.org/en/Content/ArticleLanding/2013/EE/c3ee00043e", # source is the url where we look this record up
                 "date": -1 # date is not null (but we don't know the exact value)
             }
-       }
+       },
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "rsc.10.1039.C3GC40967H.html") : 
+        {
+            "id" : None,            # there should be no id field
+            "type": "publisher-asserted-accessible",
+            "jurisdiction": "",     # jurisdiction should be the empty string
+            "open_access": False,
+            "version" : None,
+            #"BY": None, # Can't currently test for this because None signals the key should not exist
+            #"NC": None,
+            #"ND": None,
+            #"SA": None,
+            "provenance": {
+                "handler": MyPlugin._short_name, # name of plugin which processed this record
+                "handler_version": MyPlugin.__version__, # version of plugin which processed this record
+                "category": "page_scrape", # category is page_scrape
+                "description": 'License decided by scraping the resource at http://pubs.rsc.org/en/content/articlelanding/2013/gc/c3gc40967h and looking for the following license statement: "<img  class="list_icon_openaccess" src="http://sod-a.rsc-cdn.org/pubs.rsc.org/content/NewImages/open_access_blue.png" alt="Open Access" />".', # description is a long string
+                "agent": config.agent, # agent is from configuration
+                "source": "http://pubs.rsc.org/en/content/articlelanding/2013/gc/c3gc40967h", # source is the url where we look this record up
+                "date": -1 # date is not null (but we don't know the exact value)
+            }
+       },
+ 
 }
 
 """
