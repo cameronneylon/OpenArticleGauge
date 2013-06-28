@@ -1,6 +1,6 @@
 
 """
-This plugin handles Frontiers articles.
+This plugin handles RSC articles.
 
 Note this plugin supports a legacy mark that RSC have used to show that an article
 is publicly accessible but without a license statement. This searchers for the html
