@@ -2,10 +2,10 @@ from unittest import TestCase
 import requests, os
 
 from openarticlegauge import config
-from openarticlegauge.plugins.acs import ACSPlugin as MyPlugin
+from openarticlegauge.plugins.springerlink import SpringerlinkPlugin as MyPlugin
 
-SUPPORTED_URLS = ["link.springer.com/article/10.1007%2Fs11207-013-0275-y", 
-                  "ink.springer.com/fakjsskjdaf"]
+SUPPORTED_URLS = ["link.springer.com/article/10.1007%2Fs12154-012-0090-1", 
+                  "link.springer.com/article/fakjsskjdaf"]
 
 UNSUPPORTED_URLS = ["http://www.biomedcentral.com/", "askjdfsakjdhfsa"]
 
@@ -22,7 +22,46 @@ UNSUPPORTED_URLS = ["http://www.biomedcentral.com/", "askjdfsakjdhfsa"]
 # - if a key's value is -1, the resulting object MUST have the key
 #
 RESOURCE_AND_RESULT = {
-    os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "springerlink.10.1007.s11207-013-0275-y.html") : 
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "springerlink.102478.s11696-013-0391-z.html") : 
+        {
+            "id" : None,            # there should be no id field
+            "version": None,          # version should be the empty string
+            "type": None,
+            "jurisdiction": "",     # jurisdiction should be the empty string
+            "open_access": False,
+            "provenance": {
+                "handler": MyPlugin._short_name, # name of plugin which processed this record
+                "handler_version": MyPlugin.__version__, # version of plugin which processed this record
+                "category": "page_scrape", # category is page_scrape
+                "description": 'License decided by scraping the resource at http://link.springer.com/article/10.2478/s11696-013-0391-z and looking for the following license statement: "This article is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/" target="_blank" title="This link will open in a new browser window">Creative Commons Attribution 3.0 Unported Licence.".', # description is a long string
+                "agent": config.agent, # agent is from configuration
+                "source": "http://link.springer.com/article/10.2478/s11696-013-0391-z", # source is the url where we look this record up
+                "date": -1 # date is not null (but we don't know the exact value)
+            }
+       },
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "springerlink.10.1007.11207-013-0275-y-fulltext.html") : 
+        {
+            "id" : None,            # there should be no id field
+            "version": "",          # version should be the empty string
+            "type": "cc-by",
+            "jurisdiction": "",     # jurisdiction should be the empty string
+            "open_access": True,
+            "BY": True,
+            "NC": False,
+            "ND": False,
+            "SA": False,
+            "provenance": {
+                "handler": MyPlugin._short_name, # name of plugin which processed this record
+                "handler_version": MyPlugin.__version__, # version of plugin which processed this record
+                "category": "page_scrape", # category is page_scrape
+                "description": 'License decided by scraping the resource at http://link.springer.com/article/10.1007%2Fs11207-013-0275-y/fulltext.html and looking for the following license statement: "This article is distributed under the terms of the Creative Commons Attribution License which permits any use, distribution, and reproduction in any medium, provided the original author(s) and the source are credited.".', # description is a long string
+                "agent": config.agent, # agent is from configuration
+                "source": "http://link.springer.com/article/10.1007%2Fs11207-013-0275-y/fulltext.html", # source is the url where we look this record up
+                "date": -1 # date is not null (but we don't know the exact value)
+            }
+        },   
+       
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "springerlink.10.1007.s12154-012-0090-1.html") : 
         {
             "id" : None,            # there should be no id field
             "type": "publisher-asserted-accessible",
@@ -37,9 +76,9 @@ RESOURCE_AND_RESULT = {
                 "handler": MyPlugin._short_name, # name of plugin which processed this record
                 "handler_version": MyPlugin.__version__, # version of plugin which processed this record
                 "category": "page_scrape", # category is page_scrape
-                "description": 'License decided by scraping the resource at http://link.springer.com/article/10.1007%2Fs11207-013-0275-y and looking for the following license statement: "<div class="open-access">".', # description is a long string
+                "description": 'License decided by scraping the resource at http://link.springer.com/article/10.1007%2Fs12154-012-0090-1 and looking for the following license statement: "This content is freely available online to anyone, anywhere at any time.".', # description is a long string
                 "agent": config.agent, # agent is from configuration
-                "source": "http://link.springer.com/article/10.1007%2Fs11207-013-0275-y", # source is the url where we look this record up
+                "source": "http://link.springer.com/article/10.1007%2Fs12154-012-0090-1", # source is the url where we look this record up
                 "date": -1 # date is not null (but we don't know the exact value)
             }
        },
