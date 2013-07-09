@@ -46,10 +46,12 @@ class SpringerlinkPlugin(plugin.Plugin):
     def license_detect(self, record):
 
         """
-        To respond to the provider identifier: http://pubs.acs.org
+        To respond to the provider identifier: http://link.springer.com/
         
-        This should determine the licence conditions of the RSC article and populate
-        the record['bibjson']['license'] (note the US spelling) field.
+        This should determine the licence conditions of the Springer article and populate
+        the record['bibjson']['license'] (note the US spelling) field. Note that for
+        some Springer articles the license statement is only on the full text and not
+        on the landing page from the doi. 
         """
 
         lic_statements = [
@@ -79,3 +81,21 @@ class SpringerlinkPlugin(plugin.Plugin):
             # ... run the dumb string matcher if the URL is supported.
             if self.supports_url(url):
                 self.simple_extract(lic_statements, record, url)
+
+        # If the page has the Open Access button but not license information then
+        # create a temporary record and check the full text link for a license.
+        if record['bibjson'].get('license') is not None:                
+        #if record.get('bibjson').get['license'][0]['type'] == "publisher-asserted-accessible":
+            url = record['bibjson']['license'][0]['provenance']['source'] + "/fulltext.html"
+            temp_record = {}
+            temp_record['bibjson'] = {}
+            temp_record['provider'] = {}
+            temp_record['provider']['url'] = [url]
+            self.simple_extract(lic_statements, temp_record, url)
+        
+            if temp_record['bibjson']['license'][0]['type'] == 'cc-by':
+                record = temp_record
+                
+            
+                
+                

@@ -1,8 +1,8 @@
 
 """
-This plugin handles articles available at Springer Link.
+This plugin handles articles available at ACS.
 
-Note this plugin supports a mark that Springer have used to show that an article
+Note this plugin supports a mark that ACS have used to show that an article
 is publicly accessible but without any license statement. This searchers for the html
 calling the image for the mark, not for plain text.
 
@@ -12,14 +12,14 @@ any cases with Creative Commons licenses because I haven't been able to find and
 
 from openarticlegauge import plugin
 
-class SpringerLinkPlugin(plugin.Plugin):
+class ACSPlugin(plugin.Plugin):
     _short_name = __name__.split('.')[-1]
     __version__='0.1' # consider incrementing or at least adding a minor version
                     # e.g. "0.1.1" if you change this plugin
 
     # The domains that this plugin will say it can support.
     # Specified without the schema (protocol - e.g. "http://") part.
-    base_urls = ["link.springer.com"]
+    base_urls = ["pubs.acs.org/doi"]
     # so if the http://pubs.acs.org/doi/abs/10.1021/ja311990w URL comes in,
     # it should be supported.
     
@@ -60,7 +60,7 @@ class SpringerLinkPlugin(plugin.Plugin):
                  'version' : '3.0',
                  'url' : 'http://creativecommons.org/licenses/by/3.0/'}
             },
-            {'<div class="open-access">' :
+            {'<img src="/templates/jsp/_style2/_achs/images/openAccess.gif" alt="ACS AuthorChoice"/>' :
                 {'type' : 'publisher-asserted-accessible'
                 }
             }    

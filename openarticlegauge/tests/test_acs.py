@@ -4,8 +4,8 @@ import requests, os
 from openarticlegauge import config
 from openarticlegauge.plugins.acs import ACSPlugin as MyPlugin
 
-SUPPORTED_URLS = ["link.springer.com/article/10.1007%2Fs11207-013-0275-y", 
-                  "ink.springer.com/fakjsskjdaf"]
+SUPPORTED_URLS = ["pubs.acs.org/doi/abs/10.1021/ja311990w", 
+                  "pubs.acs.org/doi/fakjsskjdaf"]
 
 UNSUPPORTED_URLS = ["http://www.biomedcentral.com/", "askjdfsakjdhfsa"]
 
@@ -22,7 +22,7 @@ UNSUPPORTED_URLS = ["http://www.biomedcentral.com/", "askjdfsakjdhfsa"]
 # - if a key's value is -1, the resulting object MUST have the key
 #
 RESOURCE_AND_RESULT = {
-    os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "springerlink.10.1007.s11207-013-0275-y.html") : 
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "acs.ja311990w.html") : 
         {
             "id" : None,            # there should be no id field
             "type": "publisher-asserted-accessible",
@@ -37,9 +37,9 @@ RESOURCE_AND_RESULT = {
                 "handler": MyPlugin._short_name, # name of plugin which processed this record
                 "handler_version": MyPlugin.__version__, # version of plugin which processed this record
                 "category": "page_scrape", # category is page_scrape
-                "description": 'License decided by scraping the resource at http://link.springer.com/article/10.1007%2Fs11207-013-0275-y and looking for the following license statement: "<div class="open-access">".', # description is a long string
+                "description": 'License decided by scraping the resource at http://pubs.acs.org/doi/abs/10.1021/ja311990w and looking for the following license statement: "<img src="/templates/jsp/_style2/_achs/images/openAccess.gif" alt="ACS AuthorChoice"/>".', # description is a long string
                 "agent": config.agent, # agent is from configuration
-                "source": "http://link.springer.com/article/10.1007%2Fs11207-013-0275-y", # source is the url where we look this record up
+                "source": "http://pubs.acs.org/doi/abs/10.1021/ja311990w", # source is the url where we look this record up
                 "date": -1 # date is not null (but we don't know the exact value)
             }
        },

@@ -61,27 +61,27 @@ RESOURCE_AND_RESULT = {
             }
         },   
        
-    os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "springerlink.10.1007.s12154-012-0090-1.html") : 
-        {
-            "id" : None,            # there should be no id field
-            "type": "publisher-asserted-accessible",
-            "jurisdiction": "",     # jurisdiction should be the empty string
-            "open_access": False,
-            "version" : None,
-            #"BY": None, # Can't currently test for this because None signals the key should not exist
-            #"NC": None,
-            #"ND": None,
-            #"SA": None,
-            "provenance": {
-                "handler": MyPlugin._short_name, # name of plugin which processed this record
-                "handler_version": MyPlugin.__version__, # version of plugin which processed this record
-                "category": "page_scrape", # category is page_scrape
-                "description": 'License decided by scraping the resource at http://link.springer.com/article/10.1007%2Fs12154-012-0090-1 and looking for the following license statement: "This content is freely available online to anyone, anywhere at any time.".', # description is a long string
-                "agent": config.agent, # agent is from configuration
-                "source": "http://link.springer.com/article/10.1007%2Fs12154-012-0090-1", # source is the url where we look this record up
-                "date": -1 # date is not null (but we don't know the exact value)
-            }
-       },
+#    os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "springerlink.10.1007.s12154-012-0090-1.html") : 
+#        {
+ #           "id" : None,            # there should be no id field
+ #           "type": "publisher-asserted-accessible",
+ #           "jurisdiction": "",     # jurisdiction should be the empty string
+ #           "open_access": False,
+ #           "version" : None,
+ #           #"BY": None, # Can't currently test for this because None signals the key should not exist
+ #           #"NC": None,
+ #           #"ND": None,
+ #           #"SA": None,
+ #           "provenance": {
+ #               "handler": MyPlugin._short_name, # name of plugin which processed this record
+ #               "handler_version": MyPlugin.__version__, # version of plugin which processed this record
+ #               "category": "page_scrape", # category is page_scrape
+ #               "description": 'License decided by scraping the resource at http://link.springer.com/article/10.1007%2Fs12154-012-0090-1 and looking for the following license statement: "This content is freely available online to anyone, anywhere at any time.".', # description is a long string
+ #               "agent": config.agent, # agent is from configuration
+ #               "source": "http://link.springer.com/article/10.1007%2Fs12154-012-0090-1", # source is the url where we look this record up
+ #               "date": -1 # date is not null (but we don't know the exact value)
+ #           }
+ #      },
  
 }
 
